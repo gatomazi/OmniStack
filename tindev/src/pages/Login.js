@@ -20,6 +20,10 @@ export default function Login({ navigation }) {
 
   //Deixado vazio, executa uma unica vez
   useEffect(() => {
+    async function clearAll() {
+      await AsyncStorage.clear();
+    }
+    clearAll();
     AsyncStorage.getItem("user").then(user => {
       if (user) {
         navigation.navigate("Main", { user });
@@ -28,9 +32,14 @@ export default function Login({ navigation }) {
   }, []);
 
   async function handleLogin() {
-    console.log(user);
-    const response = await api.post("/devs", { username: user });
-    console.log(response);
+    const response = await api.post(
+      "/devs",
+      { username: user },
+      {
+        "Content-Type": "application/x-www-form-urlencoded",
+        Accept: "application/json"
+      }
+    );
     const { _id } = response.data;
 
     await AsyncStorage.setItem("user", _id);
