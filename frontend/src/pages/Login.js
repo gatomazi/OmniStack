@@ -10,7 +10,6 @@ export default function Login({ history }) {
 
   async function handleSubmit(e) {
     e.preventDefault();
-    console.log(username);
 
     const response = await api.post("/devs", {
       username

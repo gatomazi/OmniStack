@@ -23,10 +23,12 @@ module.exports = {
 
     const userExists = await Dev.findOne({ user: username });
 
+    console.log("teste");
+    console.log(username);
     if (userExists) {
+      console.log(userExists);
       return res.json(userExists);
     }
-
     const response = await axios.get(
       `https://api.github.com/users/${username}`
     );

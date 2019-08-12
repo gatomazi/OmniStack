@@ -11,7 +11,7 @@ module.exports = {
     if (!targetDev) {
       return res.status(400).json({ error: "Dev not exists" });
     }
-
+    console.log(`Liked ${targetDev}`);
     loggedDev.likes.push(targetDev._id);
 
     if (targetDev.likes.includes(loggedDev._id)) {
